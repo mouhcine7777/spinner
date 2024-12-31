@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { database, ref, set, remove } from './firebase';
 
 function PrizeSelection() {
-  const [prizes] = useState(['Prize 1', 'Prize 2', 'Prize 3', 'Prize 4', 'Prize 5', 'Prize 6']);
+  const [prizes] = useState(['vote supp', 'stop 5mns', 'Vote x2', '7assana', 'No prize', 'water']);
   const [selected, setSelected] = useState('');
   const [updating, setUpdating] = useState(false);
 
