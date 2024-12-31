@@ -1,4 +1,3 @@
-// SpinningWheel.js
 import React, { useRef, useState, useEffect } from 'react';
 import { database, ref, set, get } from './firebase';
 import './SpinningWheel.css';
@@ -44,7 +43,8 @@ function SpinningWheel({ selectedPrize }) {
     const maxSpins = 8;
     const spins = Math.floor(Math.random() * (maxSpins - minSpins + 1)) + minSpins;
     const randomDegree = 360 * spins + Math.floor(Math.random() * 360);
-    const duration = 5000;
+    const duration = 5000; // Total spinning duration
+    const popupDelay = duration - 1500; // Show popup 1 second before wheel stops
 
     wheelRef.current.style.transition = `transform ${duration}ms cubic-bezier(0.32, 0.94, 0.60, 1)`;
     wheelRef.current.style.transform = `rotate(${randomDegree}deg)`;
@@ -60,10 +60,14 @@ function SpinningWheel({ selectedPrize }) {
       console.error('Error saving IP:', error);
     }
 
-    // Wait for wheel to stop spinning, then show prize
+    // Show prize popup before wheel stops
+    setTimeout(() => {
+      setShowPrize(true);
+    }, popupDelay);
+
+    // Set final states after wheel stops
     setTimeout(() => {
       setIsSpinning(false);
-      setShowPrize(true);
       setHasSpun(true);
     }, duration);
   };
