@@ -95,12 +95,12 @@ function SpinningWheel({ selectedPrize }) {
               className="prize-icon"
             />
             <p className="arabic-text" dir="rtl">
-              {selectedPrize === "Prize 1" && "جائزة رائعة! مبروك عليك"}
-              {selectedPrize === "Prize 2" && "تهانينا! فزت بجائزة قيمة"}
-              {selectedPrize === "Prize 3" && "رائع! لقد ربحت هدية مميزة"}
-              {selectedPrize === "Prize 4" && "مبروك! جائزة خاصة في انتظارك"}
-              {selectedPrize === "Prize 5" && "تهانينا! فزت بمفاجأة سارة"}
-              {selectedPrize === "Prize 6" && "عظيم! لقد فزت بجائزة خاصة"}
+              {selectedPrize === "Prize 1" && "لديك صوت إضافي"}
+              {selectedPrize === "Prize 2" && "وقوف لمدة 5 دقائق"}
+              {selectedPrize === "Prize 3" && "تصويت مُضاعف"}
+              {selectedPrize === "Prize 4" && "لقد حصلت على حصانة"}
+              {selectedPrize === "Prize 5" && "لقد حصلت على لا شيء"}
+              {selectedPrize === "Prize 6" && "إستمتع بقارورة من الماء"}
             </p>
           </div>
         </div>
