@@ -95,12 +95,12 @@ function SpinningWheel({ selectedPrize }) {
               className="prize-icon"
             />
             <p className="arabic-text" dir="rtl">
-              {selectedPrize === "vote supp" && "لديك صوت إضافي"}
-              {selectedPrize === "stop 5mns" && "وقوف لمدة 5 دقائق"}
-              {selectedPrize === "Vote x2" && "تصويت مُضاعف"}
-              {selectedPrize === "7assana" && "لقد حصلت على حصانة"}
-              {selectedPrize === "No prize" && "لقد حصلت على لا شيء"}
-              {selectedPrize === "water" && "إستمتع بقارورة من الماء"}
+              {selectedPrize === "Prize 1" && "لديك صوت إضافي"}
+              {selectedPrize === "Prize 2" && "وقوف لمدة 5 دقائق"}
+              {selectedPrize === "Prize 3" && " x2 تصويت مُضاعف"}
+              {selectedPrize === "Prize 4" && "لقد حصلت على حصانة"}
+              {selectedPrize === "Prize 5" && "لقد حصلت على لا شيء"}
+              {selectedPrize === "Prize 6" && "إستمتع بقارورة من الماء"}
             </p>
           </div>
         </div>
