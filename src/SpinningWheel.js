@@ -5,6 +5,7 @@ import './SpinningWheel.css';
 function SpinningWheel({ selectedPrize }) {
   const wheelRef = useRef(null);
   const [isSpinning, setIsSpinning] = useState(false);
+  const [showWheel, setShowWheel] = useState(false);
   const [showPrize, setShowPrize] = useState(false);
   const [hasSpun, setHasSpun] = useState(false);
   const [userIP, setUserIP] = useState('');
@@ -33,18 +34,27 @@ function SpinningWheel({ selectedPrize }) {
     checkIPStatus();
   }, []);
 
+  const handleButtonClick = () => {
+    if (!showWheel) {
+      setShowWheel(true);
+      setTimeout(() => {
+        spinWheel();
+      }, 100); // Small delay to ensure wheel is visible before spinning
+    }
+  };
+
   const spinWheel = async () => {
     if (isSpinning || hasSpun || !userIP) return;
     
     setIsSpinning(true);
-    setShowPrize(false);  // Reset prize popup state
+    setShowPrize(false);
 
     const minSpins = 5;
     const maxSpins = 8;
     const spins = Math.floor(Math.random() * (maxSpins - minSpins + 1)) + minSpins;
     const randomDegree = 360 * spins + Math.floor(Math.random() * 360);
-    const duration = 5000; // Total spinning duration
-    const popupDelay = duration - 1500; // Show popup 1 second before wheel stops
+    const duration = 5000;
+    const popupDelay = duration - 1500;
 
     wheelRef.current.style.transition = `transform ${duration}ms cubic-bezier(0.32, 0.94, 0.60, 1)`;
     wheelRef.current.style.transform = `rotate(${randomDegree}deg)`;
@@ -60,12 +70,10 @@ function SpinningWheel({ selectedPrize }) {
       console.error('Error saving IP:', error);
     }
 
-    // Show prize popup before wheel stops
     setTimeout(() => {
       setShowPrize(true);
     }, popupDelay);
 
-    // Set final states after wheel stops
     setTimeout(() => {
       setIsSpinning(false);
       setHasSpun(true);
@@ -74,14 +82,16 @@ function SpinningWheel({ selectedPrize }) {
 
   return (
     <div className="wheel-container">
-      <div className="wheel" ref={wheelRef}>
-        <img src="/wheel.png" alt="Spinning Wheel" className="wheel-image" />
-      </div>
+      {showWheel && (
+        <div className="wheel" ref={wheelRef}>
+          <img src="/wheel.png" alt="Spinning Wheel" className="wheel-image" />
+        </div>
+      )}
       <div className="spin-button-container">
         <img 
           src="/spin.png" 
           alt="Spin" 
-          onClick={!isSpinning && !hasSpun && selectedPrize ? spinWheel : undefined}
+          onClick={!isSpinning && !hasSpun && selectedPrize ? handleButtonClick : undefined}
           className={`spin-button-image ${isSpinning || hasSpun || !selectedPrize ? 'disabled' : ''}`}
         />
       </div>
