@@ -49,11 +49,11 @@ function SpinningWheel({ selectedPrize }) {
     setIsSpinning(true);
     setShowPrize(false);
 
-    const minSpins = 5;
-    const maxSpins = 8;
+    const minSpins = 15;
+    const maxSpins = 20;
     const spins = Math.floor(Math.random() * (maxSpins - minSpins + 1)) + minSpins;
     const randomDegree = 360 * spins + Math.floor(Math.random() * 360);
-    const duration = 5000;
+    const duration = 8000;
     const popupDelay = duration - 1500;
 
     wheelRef.current.style.transition = `transform ${duration}ms cubic-bezier(0.32, 0.94, 0.60, 1)`;
